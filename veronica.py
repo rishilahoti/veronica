@@ -4,8 +4,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
 import speech_recognition as sr
-import pyaudio 
-import pyttsx3
+import twilio
+import pyaudio
 import pywhatkit
 import datetime
 import wikipedia
@@ -30,7 +30,7 @@ import ctypes
 import requests
 import shutil
 from twilio.rest import Client
-from client.textui import progress
+from clint.textui import progress
 from ecapture import ecapture as ec
 from bs4 import BeautifulSoup
 import win32com.client as wincl
@@ -57,9 +57,16 @@ def take_command():
                 command=command.lower()
                 if 'veronica' in command:
                    command=command.replace('hi','')
+                   command=command.replace('hi')
+                   command=command.replace('hai','')
+                   command=command.replace('hai',)
+                   command=command.replace('hay','')
+                   command=command.replace('hay')
                    command=command.replace('hey','')
                    command=command.replace('veronica','')
                    command=command.replace(' ','')
+                   command=command.replace('veronica cha','')
+                   command=command.replace('onee cha','')
                    print(command)
         except:
                 talk('please repeat the command')    
@@ -103,35 +110,35 @@ def run_veronica():
                 break
             cv2.imshow('Security Cam',frame1)
 
-#    elif 'browser' in command:
- #       class MainWindow(QMainWindow):
-  #          def _init_(self):
-   #             super(MainWindow,self)._init_()
-    #            self.browser = QWebEngineView()
-     #           self.browser.setUrl(QUrl('http://google.com'))
-      #          self.setCentralWidget(self.browser)
-       #         self.showMaximized()
-        #        navbar=QToolBar()
-         #       self.addToolBar(navbar)
-          #      backbtn=QAction('Back',self)
-           #     backbtn.triggered.connect(self.browser.back)
-            #    navbar.addAction(backbtn)
-             #   frontbtn=QAction('Front',self)
-              #  frontbtn.triggered.connect(self.browser.forward)
-               # navbar.addAction(frontbtn)
-                #reloadbtn=QAction('Reoload',self)
-                #reloadbtn.triggered.connect(self.browser.reload)
-                #navbar.addAction(reloadbtn)
-                #homebtn=QAction('Home',self)
-                #homebtn.triggered.connect(self.khome)
-#                navbar.addAction(homebtn)
+    elif 'browser' in command:
+        class MainWindow(QMainWindow):
+            def _init_(self):
+                super(MainWindow,self)._init_()
+                self.browser = QWebEngineView()
+                self.browser.setUrl(QUrl('http://google.com'))
+                self.setCentralWidget(self.browser)
+                self.showMaximized()
+                navbar=QToolBar()
+                self.addToolBar(navbar)
+                backbtn=QAction('Back',self)
+                backbtn.triggered.connect(self.browser.back)
+                navbar.addAction(backbtn)
+                frontbtn=QAction('Front',self)
+                frontbtn.triggered.connect(self.browser.forward)
+                navbar.addAction(frontbtn)
+                reloadbtn=QAction('Reoload',self)
+                reloadbtn.triggered.connect(self.browser.reload)
+                navbar.addAction(reloadbtn)
+                homebtn=QAction('Home',self)
+                homebtn.triggered.connect(self.khome)
+                navbar.addAction(homebtn)
 
-#            def khome(self):
- #               self.browser.setUrl(QUrl('http://google.com'))
-  #      app=QApplication(sys.argv)
-   #     QApplication.setApplicationName('Interent')
-    #    window = MainWindow()
-     #   app.exec_()
+            def khome(self):
+                self.browser.setUrl(QUrl('http://google.com'))
+        app=QApplication(sys.argv)
+        QApplication.setApplicationName('Interent')
+        window = MainWindow()
+        app.exec_()
 
     elif 'location' in command:
         number=(input("enter the no:"))
@@ -149,3 +156,4 @@ time.sleep(0)
 talk('how can i help you')
 while 1:
     run_veronica()
+    
